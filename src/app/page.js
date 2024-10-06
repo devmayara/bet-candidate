@@ -1,95 +1,63 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import { doLogin } from "@/services/Web3Service";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [message, setMessage] = useState();
+  const { push } = useRouter();
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  function btnLoginClick() {
+    setMessage("Conectando na carteira, aguarde...");
+    doLogin()
+      .then((account) => push("/bet"))
+      .catch((error) => {
+        console.log(error);
+        setMessage(error.message);
+      });
+  }
+
+  return (
+    <>
+      <div className="d-flex flex-column">
+        <main className="container px-4 py-5 flex-grow-1">
+          <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div className="col-6 ">
+              <img
+                src="/BetCandidate-circle.png"
+                className="d-block mx-lg-auto img-fluid rounded-circle shadow-lg"
+                alt="Logo BetCandidate"
+                width="350"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="col-lg-6">
+              <h1 className="display-5 fw-bold text-body-emphasis lh-1 mb-3">
+                BetCandidate
+              </h1>
+              <p className="lead">
+                <b>Apostas on-chain nas eleições americanas.</b>
+              </p>
+              <p className="lead">
+                Autentique-se com sua carteira e deixe a sua aposta para a
+                próxima disputa.
+              </p>
+              <div className="d-flex justify-content-start">
+                <button
+                  type="button"
+                  className="btn btn-primary btn-lg px-4"
+                  onClick={ btnLoginClick }
+                >
+                  <img src="/metamask.svg" className="me-3" width={64} />
+                  Conectar MetaMask
+                </button>
+              </div>
+              <p className="message">{ message }</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </>
   );
 }

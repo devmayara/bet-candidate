@@ -16,7 +16,7 @@ export async function doLogin() {
   return accounts[0];
 }
 
-function getContract() {
+export function getContract() {
   if (!window.ethereum) throw new Error("MetaMesk não está instalada!");
 
   const from = localStorage.getItem("wallet");

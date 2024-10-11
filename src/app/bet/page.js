@@ -125,6 +125,12 @@ export default function Bet() {
                   src={dispute.image1}
                   alt={dispute.candidate1}
                 />
+                <span
+                  className="badge text-bg-secondary d-block my-2 mx-auto"
+                  style={{ width: 250 }}
+                >
+                  {Web3.utils.fromWei(dispute.total1, "ether")} POL Apostados
+                </span>
                 {dispute.winner == 1 ? (
                   <button
                     className="btn btn-primary p-3 my-2 d-block mx-auto"
@@ -142,12 +148,6 @@ export default function Bet() {
                     <i className="bi bi-cash-coin"></i> Aposte nesse candidato
                   </button>
                 )}
-                <span
-                  className="badge text-bg-secondary d-block mx-auto"
-                  style={{ width: 250 }}
-                >
-                  {Web3.utils.fromWei(dispute.total1, "ether")} POL Apostados
-                </span>
               </div>
             ) : (
               <></>
@@ -164,6 +164,12 @@ export default function Bet() {
                   src={dispute.image2}
                   alt={dispute.candidate2}
                 />
+                <span
+                  className="badge text-bg-secondary d-block my-2 mx-auto"
+                  style={{ width: 250 }}
+                >
+                  {Web3.utils.fromWei(dispute.total2, "ether")} POL Apostados
+                </span>
                 {dispute.winner == 2 ? (
                   <button
                     className="btn btn-primary p-3 my-2 d-block mx-auto"
@@ -181,12 +187,6 @@ export default function Bet() {
                     <i className="bi bi-cash-coin"></i> Aposte nesse candidato
                   </button>
                 )}
-                <span
-                  className="badge text-bg-secondary d-block mx-auto"
-                  style={{ width: 250 }}
-                >
-                  {Web3.utils.fromWei(dispute.total2, "ether")} POL Apostados
-                </span>
               </div>
             ) : (
               <></>

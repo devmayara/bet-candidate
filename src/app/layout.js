@@ -30,11 +30,11 @@ export default function RootLayout({ children }) {
             <div className="container text-center">
               <p className="text-muted my-3">
                 Smart Contract:
-                <b> 0x6206c85A08F50e611455d3d8EFc93487DC0212F9</b>
+                <b> 0x099cE1e579CB69c9a242A6FcBF53f56Ba9249529</b>
               </p>
               <p className="text-muted mb-5">
                 <a
-                  href="https://amoy.polygonscan.com/address/0x6206c85A08F50e611455d3d8EFc93487DC0212F9"
+                  href="https://amoy.polygonscan.com/address/0x099cE1e579CB69c9a242A6FcBF53f56Ba9249529"
                   target="_blank"
                   className="btn btn-outline-dark"
                   style={{

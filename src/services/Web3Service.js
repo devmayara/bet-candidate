@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import CONTRACT_ABI from "./ABI.json";
 
-const CONTRACT_ADDRESS = "0x6206c85A08F50e611455d3d8EFc93487DC0212F9";
+const CONTRACT_ADDRESS = "0x099cE1e579CB69c9a242A6FcBF53f56Ba9249529";
 
 export async function doLogin() {
   if (!window.ethereum) throw new Error("MetaMesk não está instalada!");
@@ -40,7 +40,9 @@ export async function placeBet(candidate, amountInEth) {
 
 export async function finishDispute(winner) {
   const contract = getContract();
-  return contract.methods.finish(winner).send();
+  return contract.methods.finish(winner).send({
+    gasPrice: "34920000017"
+  });
 }
 
 export async function claimPrize() {
